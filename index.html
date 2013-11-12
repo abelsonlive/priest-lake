@@ -5,9 +5,18 @@
   <style>
 
   body {
-    font: 15px sans-serif;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light","Helvetica Neue", Helvetica,sans-serif;
+    font-weight: 100;
+    font-size: 15px;
+    font-style: light;
     shape-rendering: crispEdges;
     background-color: #f1f1f1;
+  }
+
+  h4 {
+   font-family: "HelveticaNeue-Light", "Helvetica Neue Light","Helvetica Neue", Helvetica,sans-serif;
+   margin-bottom: 0px;
+   font-size: 24px;
   }
 
   hr {
@@ -40,9 +49,8 @@
 <body>
   <center>
   <div class="plot">
-      <h1>Height of Priest Lake, 1928 - 2013</h1>
+      <h4>Priest Lake Gage Height, 1928 - 2013</h4>
       <hr></hr>
-      <br></br>
 
   </div>
   </center>
@@ -55,11 +63,10 @@ var width = 800,
 
 var day = d3.time.format("%w"),
     week = d3.time.format("%U"),
-    percent = d3.format(".1%"),
     format = d3.time.format("%Y-%m-%d");
 
 var color = d3.scale.quantize()
-    .domain([-.5, 6.5])
+    .domain([-0.5, 6.5])
     .range(d3.range(9).map(function(d) { return "q" + d + "-9"; }));
 
 var svg = d3.select("div.plot").selectAll("svg")
@@ -104,7 +111,7 @@ d3.csv("data/height-d3.csv", function(error, csv) {
   rect.filter(function(d) { return d in data; })
       .attr("class", function(d) { return "day " + color(data[d]); })
     .select("title")
-      .text(function(d) { return d + ": " + percent(data[d]); });
+      .text(function(d) { return 'Date: ' + d + "\r\nGage Height: " + data[d] + ' ft'; });
 });
 
 function monthPath(t0) {
