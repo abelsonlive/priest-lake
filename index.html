@@ -15,8 +15,6 @@
     stroke: #ccc;
   }
 
-
-
   .month {
     fill: none;
     stroke: #000;
@@ -37,14 +35,19 @@
   </style>
 </head>
 <body>
-  <center><h1>Height of Priest Lake, 1928 - 2013</h1> <center>
-  <hr></hr>
+  <center>
+  <div class="plot">
+      <h1>Height of Priest Lake, 1928 - 2013</h1>
+      <hr></hr>
+
+  </div>
+  </center>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
-var width = 960,
-    height = 80,
-    cellSize = 10; // cell size
+var width = 800,
+    height = 60,
+    cellSize = 8; // cell size
 
 var day = d3.time.format("%w"),
     week = d3.time.format("%U"),
@@ -55,7 +58,7 @@ var color = d3.scale.quantize()
     .domain([-.5, 6.5])
     .range(d3.range(9).map(function(d) { return "q" + d + "-9"; }));
 
-var svg = d3.select("body").selectAll("svg")
+var svg = d3.select("div.plot").selectAll("svg")
     .data(d3.range(1928, 2014))
   .enter().append("svg")
     .attr("width", width)
